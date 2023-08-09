@@ -1,25 +1,17 @@
-def caesar_cipher(text, shift):
-    encrypted_text = ""
-    
-    for char in text:
-        if char.isalpha():  # check if the character is an alphabet
-            # find the position of the character in the alphabet (0-25)
-            position = ord(char) - ord('a' if char.islower() else 'A')
-            # shift the position
-            new_position = (position + shift) % 26
-            # add the shifted character to the encrypted text
-            encrypted_text += chr(new_position + ord('a' if char.islower() else 'A'))
+sentence = input("Please enter a sentence: ").lower()
+encrypted_text = ""
+shift = 5
+for char in sentence:
+        if char.isalpha():  
+            ascii_offset = ord("A") if char.isupper() else ord("a")
+            encrypted_char = chr((ord(char) - ascii_offset + shift) % 26 + ascii_offset)
+            encrypted_text += encrypted_char
         else:
             encrypted_text += char
+print("The encrypted sentence is: ", encrypted_text)
     
-    return encrypted_text
 
-# Test the function
-plaintext = "programming python is fun!"
-shift = 5
-encrypted_text = caesar_cipher(plaintext, shift)
-print(f"Plaintext: {plaintext}")
-print(f"Encrypted text: {encrypted_text}")
+
 
 
 
